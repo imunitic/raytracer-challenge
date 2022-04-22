@@ -12,6 +12,12 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #initialization }
+RTCTuple class >> withX: x withY: y withZ: z [
+	^ self new x: x; y: y; z: z.
+
+]
+
 { #category : #accessing }
 RTCTuple >> x [
 
