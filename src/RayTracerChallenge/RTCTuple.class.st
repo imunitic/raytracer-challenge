@@ -18,6 +18,13 @@ RTCTuple class >> withX: x withY: y withZ: z [
 
 ]
 
+{ #category : #initialization }
+RTCTuple >> initialize [ 
+	self x: 0.0;
+	     y: 0.0;
+	     z: 0.0.
+]
+
 { #category : #accessing }
 RTCTuple >> x [
 
