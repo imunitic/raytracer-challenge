@@ -6,3 +6,9 @@ Class {
 	#superclass : #RTCTuple,
 	#category : #RayTracerChallenge
 }
+
+{ #category : #testing }
+RTCVector >> isRTCVector [
+
+	^ true
+]

@@ -25,6 +25,18 @@ RTCTuple >> initialize [
 	     z: 0.0.
 ]
 
+{ #category : #testing }
+RTCTuple >> isRTCPoint [
+	
+	^ false
+]
+
+{ #category : #testing }
+RTCTuple >> isRTCVector [
+
+	^ false
+]
+
 { #category : #accessing }
 RTCTuple >> x [
 
