@@ -14,6 +14,24 @@ RTCTupleTest >> testInitialize [
 ]
 
 { #category : #tests }
+RTCTupleTest >> testIsRTCPoint [
+
+	|t|
+	t := RTCTuple new.
+	
+	self assert: t isRTCPoint equals: false
+]
+
+{ #category : #tests }
+RTCTupleTest >> testIsRTCVector [
+
+	|t|
+	t := RTCTuple new.
+	
+	self assert: t isRTCVector equals: false
+]
+
+{ #category : #tests }
 RTCTupleTest >> testWithXYZ [
    | t |
 	t := RTCTuple withX: 5 withY: 4  withZ: 3.
