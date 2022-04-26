@@ -12,7 +12,7 @@ RTCVector >> + aTuple [
 
 	^ aTuple isRTCPoint 
 		ifTrue: [ ^ aTuple + self ]
-		ifFalse: [ ^ super + aTuple]
+		ifFalse: [ ^ super + aTuple ]
 ]
 
 { #category : #testing }
