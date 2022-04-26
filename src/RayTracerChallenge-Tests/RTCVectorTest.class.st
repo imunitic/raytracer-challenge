@@ -5,6 +5,34 @@ Class {
 }
 
 { #category : #tests }
+RTCVectorTest >> testAdditionOfTwoVectors [
+
+	|v1 v2 r e|
+	v1 := RTCVector withX: 3 withY: -2 withZ: 5.
+	v2 := RTCVector withX: -2 withY: 3 withZ: 1. 
+
+	r := v1 + v2.
+	e := RTCVector withX: 1 withY: 1 withZ: 6.
+	
+	self assert: e isRTCVector equals: true;
+		  assert: r = e equals: true. 
+]
+
+{ #category : #tests }
+RTCVectorTest >> testAdditionWithPoint [
+
+	|p v r e|
+	p := RTCPoint withX: 3 withY: -2 withZ: 5.
+	v := RTCVector withX: -2 withY: 3  withZ: 1. 
+
+	r := v + p.
+	e := RTCPoint withX: 1 withY: 1  withZ: 6.
+	
+	self assert: r isRTCPoint equals: true;
+		  assert: r = e equals: true.
+]
+
+{ #category : #tests }
 RTCVectorTest >> testInitialize [ 
 
 	|v|

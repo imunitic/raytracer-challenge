@@ -18,6 +18,27 @@ RTCTuple class >> withX: x withY: y withZ: z [
 
 ]
 
+{ #category : #arithmetic }
+RTCTuple >> + aTuple [
+
+	^ self class withX: (self x + aTuple x) 
+					 withY: (self y + aTuple y)  
+					 withZ: (self z + aTuple z)
+]
+
+{ #category : #comparing }
+RTCTuple >> = aTuple [
+	^ aTuple class == self class 
+	  and: [ aTuple x = self x 
+		    and: [ aTuple y = self y
+			      and: aTuple z = self z ] ]
+]
+
+{ #category : #comparing }
+RTCTuple >> hash [ 
+	^ self x hash bitXor: (self y hash bitXor: self z hash)
+]
+
 { #category : #initialization }
 RTCTuple >> initialize [ 
 	self x: 0.0;

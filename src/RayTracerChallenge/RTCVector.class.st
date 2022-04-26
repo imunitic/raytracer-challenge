@@ -7,6 +7,14 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #arithmetic }
+RTCVector >> + aTuple [
+
+	^ aTuple isRTCPoint 
+		ifTrue: [ ^ aTuple + self ]
+		ifFalse: [ ^ super + aTuple]
+]
+
 { #category : #testing }
 RTCVector >> isRTCVector [
 
