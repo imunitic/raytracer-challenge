@@ -7,6 +7,13 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #'instance creation' }
+RTCVector class >> zero [
+
+	^ self withX: 0.0 withY: 0.0 withZ: 0.0 
+	
+]
+
 { #category : #arithmetic }
 RTCVector >> + aTuple [
 

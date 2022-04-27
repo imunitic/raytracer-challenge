@@ -97,3 +97,14 @@ RTCVectorTest >> testSubtractionWithVector [
 	
 	self assert: r = e equals: true
 ]
+
+{ #category : #tests }
+RTCVectorTest >> testZero [ 
+
+	|v e|
+	v := RTCVector zero.
+	e := RTCVector withX: 0.0 withY: 0.0  withZ: 0.0.
+	
+	self assert: v = e equals: true
+
+]
