@@ -11,8 +11,16 @@ Class {
 RTCVector >> + aTuple [
 
 	^ aTuple isRTCPoint 
-		ifTrue: [ ^ aTuple + self ]
+		ifTrue: [ ^ (super + aTuple) asRTCPoint ]
 		ifFalse: [ ^ super + aTuple ]
+]
+
+{ #category : #arithmetic }
+RTCVector >> - aTuple [
+
+	^ aTuple isRTCPoint 
+		ifTrue: [ SubtractingWithPointNotAllowed new signal: 'Substracting points from vector is not allowed' ]
+		ifFalse: [ ^ super - aTuple ]
 ]
 
 { #category : #testing }

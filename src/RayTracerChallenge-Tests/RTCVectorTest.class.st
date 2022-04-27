@@ -60,3 +60,27 @@ RTCVectorTest >> testIsRTCVector [
 	
 	self assert: v isRTCVector equals: true
 ]
+
+{ #category : #tests }
+RTCVectorTest >> testSubtractionWithPoint [
+
+	|p v|
+	v := RTCVector withX: 3 withY: -2 withZ: 5.
+	p := RTCPoint withX: -2 withY: 3  withZ: 1. 
+
+	self should: [ v - p ]
+	     raise: SubtractingWithPointNotAllowed
+]
+
+{ #category : #tests }
+RTCVectorTest >> testSubtractionWithVector [
+
+	|v1 v2 r e|
+	v1 := RTCVector withX: 3 withY: 2 withZ: 1.
+	v2 := RTCVector withX: 5 withY: 6  withZ: 7. 
+
+	r := v1 - v2.
+	e := RTCVector withX: -2 withY: -4  withZ: -6. 
+	
+	self assert: r = e equals: true
+]

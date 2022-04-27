@@ -15,6 +15,14 @@ RTCPoint >> + aTuple [
 		ifFalse: [ ^ super + aTuple ]
 ]
 
+{ #category : #arithmetic }
+RTCPoint >> - aTuple [
+
+	^ aTuple isRTCPoint 
+		ifTrue: [ ^ (super - aTuple) asRTCVector  ]
+		ifFalse: [ ^ super - aTuple ]
+]
+
 { #category : #testing }
 RTCPoint >> isRTCPoint [
 

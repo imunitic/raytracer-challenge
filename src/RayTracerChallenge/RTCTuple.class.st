@@ -26,12 +26,36 @@ RTCTuple >> + aTuple [
 					 withZ: (self z + aTuple z)
 ]
 
+{ #category : #arithmetic }
+RTCTuple >> - aTuple [
+
+	^ self class withX: (self x - aTuple x) 
+					 withY: (self y - aTuple y)  
+					 withZ: (self z - aTuple z)
+]
+
 { #category : #comparing }
 RTCTuple >> = aTuple [
 	^ aTuple class == self class 
 	  and: [ aTuple x = self x 
 		    and: [ aTuple y = self y
 			      and: aTuple z = self z ] ]
+]
+
+{ #category : #converting }
+RTCTuple >> asRTCPoint [
+	
+	^ RTCPoint withX: self x 
+					  withY: self y  
+					  withZ: self z
+]
+
+{ #category : #converting }
+RTCTuple >> asRTCVector [
+	
+	^ RTCVector withX: self x 
+					  withY: self y  
+					  withZ: self z
 ]
 
 { #category : #comparing }
