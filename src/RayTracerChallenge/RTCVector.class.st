@@ -15,6 +15,16 @@ RTCVector class >> zero [
 ]
 
 { #category : #arithmetic }
+RTCVector >> * aNumber [
+
+	^ aNumber isNumber 
+		ifTrue: [ self class withX: (self x * aNumber) 
+										 withY: (self y * aNumber) 
+										 withZ: (self z * aNumber) ]
+		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
+]
+
+{ #category : #arithmetic }
 RTCVector >> + aTuple [
 
 	^ aTuple isRTCPoint 
@@ -26,8 +36,16 @@ RTCVector >> + aTuple [
 RTCVector >> - aTuple [
 
 	^ aTuple isRTCPoint 
-		ifTrue: [ SubtractingWithPointNotAllowed new signal: 'Substracting points from vector is not allowed' ]
+		ifTrue: [ RTCSubtractingWithPointNotAllowed new signal: 'Substracting points from vector is not allowed' ]
 		ifFalse: [ ^ super - aTuple ]
+]
+
+{ #category : #arithmetic }
+RTCVector >> / aNumber [
+
+	^ aNumber isNumber 
+		ifTrue: [ self * (1.0/aNumber) ]
+		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #testing }

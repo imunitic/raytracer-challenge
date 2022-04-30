@@ -11,7 +11,7 @@ Class {
 RTCPoint >> + aTuple [
 
 	^ aTuple isRTCPoint 
-		ifTrue: [ AdditionOfPointsNotAllowed new signal: 'Two points can''t be added' ]
+		ifTrue: [ RTCAdditionOfPointsNotAllowed new signal: 'Two points can''t be added' ]
 		ifFalse: [ ^ super + aTuple ]
 ]
 

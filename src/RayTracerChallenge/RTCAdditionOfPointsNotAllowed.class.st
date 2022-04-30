@@ -2,7 +2,7 @@
 Addition of RTCPoints is not allowed
 "
 Class {
-	#name : #AdditionOfPointsNotAllowed,
+	#name : #RTCAdditionOfPointsNotAllowed,
 	#superclass : #Exception,
 	#category : #RayTracerChallenge
 }

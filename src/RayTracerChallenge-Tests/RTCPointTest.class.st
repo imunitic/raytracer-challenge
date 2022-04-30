@@ -12,7 +12,7 @@ RTCPointTest >> testAdditionOfTwoPoints [
 	p2 := RTCPoint new. 
 
 	self should: [ p1 + p2 ]
-	     raise: AdditionOfPointsNotAllowed
+	     raise: RTCAdditionOfPointsNotAllowed
 ]
 
 { #category : #tests }
