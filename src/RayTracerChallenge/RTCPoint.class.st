@@ -7,6 +7,11 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #initialization }
+RTCPoint class >> withX: x withY: y withZ: z [
+	^ self withX: x withY: y withZ: z withW: 1.0
+]
+
 { #category : #arithmetic }
 RTCPoint >> + aTuple [
 

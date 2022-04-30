@@ -7,15 +7,27 @@ Class {
 	#instVars : [
 		'x',
 		'y',
-		'z'
+		'z',
+		'w'
 	],
 	#category : #RayTracerChallenge
 }
 
 { #category : #initialization }
-RTCTuple class >> withX: x withY: y withZ: z [
-	^ self new x: x; y: y; z: z.
+RTCTuple class >> withX: x withY: y withZ: z withW: w [
+	^ self new x: x; y: y; z: z; w: w.
 
+]
+
+{ #category : #arithmetic }
+RTCTuple >> * aNumber [
+
+	^ aNumber isNumber 
+		ifTrue: [ self class withX: (self x * aNumber) 
+										 withY: (self y * aNumber) 
+										 withZ: (self z * aNumber) 
+										 withW: (self w * aNumber)]
+		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #arithmetic }
@@ -24,6 +36,7 @@ RTCTuple >> + aTuple [
 	^ self class withX: (self x + aTuple x) 
 					 withY: (self y + aTuple y)  
 					 withZ: (self z + aTuple z)
+					 withW: (self w + aTuple w)
 ]
 
 { #category : #arithmetic }
@@ -32,6 +45,15 @@ RTCTuple >> - aTuple [
 	^ self class withX: (self x - aTuple x) 
 					 withY: (self y - aTuple y)  
 					 withZ: (self z - aTuple z)
+					 withW: (self w - aTuple w)
+]
+
+{ #category : #arithmetic }
+RTCTuple >> / aNumber [
+
+	^ aNumber isNumber 
+		ifTrue: [ self * (1.0/aNumber) ]
+		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #comparing }
@@ -39,15 +61,17 @@ RTCTuple >> = aTuple [
 	^ aTuple class == self class 
 	  and: [ aTuple x = self x 
 		    and: [ aTuple y = self y
-			      and: aTuple z = self z ] ]
+			      and: [ aTuple z = self z 
+				        and: aTuple w = self w ]]]
 ]
 
 { #category : #converting }
 RTCTuple >> asRTCPoint [
 	
 	^ RTCPoint withX: self x 
-					  withY: self y  
-					  withZ: self z
+					 withY: self y  
+					 withZ: self z
+					 withW: self w
 ]
 
 { #category : #converting }
@@ -56,11 +80,12 @@ RTCTuple >> asRTCVector [
 	^ RTCVector withX: self x 
 					  withY: self y  
 					  withZ: self z
+					  withW: self w
 ]
 
 { #category : #comparing }
 RTCTuple >> hash [ 
-	^ self x hash bitXor: (self y hash bitXor: self z hash)
+	^ self x hash bitXor: (self y hash bitXor: (self z hash bitXor: self w hash))
 ]
 
 { #category : #initialization }
@@ -80,6 +105,18 @@ RTCTuple >> isRTCPoint [
 RTCTuple >> isRTCVector [
 
 	^ false
+]
+
+{ #category : #accessing }
+RTCTuple >> w [
+
+	^ w
+]
+
+{ #category : #accessing }
+RTCTuple >> w: anObject [
+
+	w := anObject
 ]
 
 { #category : #accessing }

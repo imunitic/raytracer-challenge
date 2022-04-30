@@ -77,14 +77,14 @@ RTCPointTest >> testSubtractionWithPoint [
 { #category : #tests }
 RTCPointTest >> testSubtractionWithVector [
 
-	|receiver sender result expected|
-	receiver := RTCPoint withX: 3 withY: 2 withZ: 1.
-	sender := RTCVector withX: 5 withY: 6  withZ: 7. 
+	|p v r e|
+	p := RTCPoint withX: 3 withY: 2 withZ: 1.
+	v := RTCVector withX: 5 withY: 6  withZ: 7. 
 
-	result := receiver - sender.
-	expected := RTCPoint withX: -2 withY: -4  withZ: -6.
+	r := p - v.
+	e := RTCPoint withX: -2 withY: -4  withZ: -6.
 	
-	self assert: result isRTCPoint equals: true;
-		  assert: result = expected equals: true.
+	self assert: r isRTCPoint equals: true;
+		  assert: r = e equals: true.
 	
 ]

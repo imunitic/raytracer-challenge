@@ -7,21 +7,16 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #initialization }
+RTCVector class >> withX: x withY: y withZ: z [
+	^ self withX: x withY: y withZ: z withW: 0.0
+]
+
 { #category : #'instance creation' }
 RTCVector class >> zero [
 
 	^ self withX: 0.0 withY: 0.0 withZ: 0.0 
 	
-]
-
-{ #category : #arithmetic }
-RTCVector >> * aNumber [
-
-	^ aNumber isNumber 
-		ifTrue: [ self class withX: (self x * aNumber) 
-										 withY: (self y * aNumber) 
-										 withZ: (self z * aNumber) ]
-		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #arithmetic }
@@ -40,14 +35,6 @@ RTCVector >> - aTuple [
 		ifFalse: [ ^ super - aTuple ]
 ]
 
-{ #category : #arithmetic }
-RTCVector >> / aNumber [
-
-	^ aNumber isNumber 
-		ifTrue: [ self * (1.0/aNumber) ]
-		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
-]
-
 { #category : #testing }
 RTCVector >> isRTCVector [
 
@@ -59,6 +46,7 @@ RTCVector >> negated [
 	
 	^ self x: self x negated; 
 	       y: self y negated; 
-	       z: self z negated; 
+	       z: self z negated;
+			  w: self w negated; 
 			  yourself
 ]

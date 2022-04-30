@@ -33,18 +33,6 @@ RTCVectorTest >> testAdditionWithPoint [
 ]
 
 { #category : #tests }
-RTCVectorTest >> testDivision [ 
-
-	| v r e |
-	v := RTCVector withX: 1 withY: -2  withZ: 3.
-	
-	r := v / 2.
-	e := RTCVector withX: 0.5 withY: -1  withZ: 1.5.
-	
-	self assert: r = e equals: true 
-]
-
-{ #category : #tests }
 RTCVectorTest >> testInitialize [ 
 
 	|v|
@@ -74,23 +62,6 @@ RTCVectorTest >> testIsRTCVector [
 ]
 
 { #category : #tests }
-RTCVectorTest >> testMultiplication [
-
-	|v r e|
-	v := RTCVector withX: 1 withY: -2 withZ: 3.
-	
-	r := v * 3.5.
-	e := RTCVector withX: 3.5 withY: -7  withZ: 10.5.
-	
-	self assert: r = e equals: true.
-	
-	r := v * 0.5.
-	e := RTCVector withX: 0.5 withY: -1  withZ: 1.5.
-	
-	self assert: r = e equals: true. 
-]
-
-{ #category : #tests }
 RTCVectorTest >> testNegated [
 
 	|t r e|
@@ -98,7 +69,7 @@ RTCVectorTest >> testNegated [
 	t := RTCVector withX: 1 withY: -2  withZ: 3.
 	r := t negated.
 	
-	e := RTCVector withX: -1 withY: 2  withZ: -3. 
+	e := RTCVector withX: -1 withY: 2  withZ: -3 withW: 0.0. 
 	
 	self assert: r = e equals: true
 ]
