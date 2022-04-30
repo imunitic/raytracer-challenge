@@ -35,6 +35,12 @@ RTCVector >> - aTuple [
 		ifFalse: [ ^ super - aTuple ]
 ]
 
+{ #category : #initialization }
+RTCVector >> initialize [ 
+	super initialize.
+	self w: 0.0.
+]
+
 { #category : #testing }
 RTCVector >> isRTCVector [
 

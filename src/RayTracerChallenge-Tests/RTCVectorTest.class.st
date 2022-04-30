@@ -40,7 +40,8 @@ RTCVectorTest >> testInitialize [
 	
 	self assert: v x equals: 0.0;
 		  assert: v y equals: 0.0;
-		  assert: v z equals: 0.0.
+		  assert: v z equals: 0.0;
+		  assert: v w equals: 0.0.
 ]
 
 { #category : #tests }

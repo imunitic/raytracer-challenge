@@ -38,7 +38,8 @@ RTCPointTest >> testInitialize [
 	
 	self assert: p x equals: 0.0;
 		  assert: p y equals: 0.0;
-		  assert: p z equals: 0.0.
+		  assert: p z equals: 0.0;
+		  assert: p w equals: 1.0.
 ]
 
 { #category : #tests }

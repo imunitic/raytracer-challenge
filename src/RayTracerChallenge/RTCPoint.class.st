@@ -28,6 +28,12 @@ RTCPoint >> - aTuple [
 		ifFalse: [ ^ super - aTuple ]
 ]
 
+{ #category : #initialization }
+RTCPoint >> initialize [ 
+	super initialize. 
+	self w: 1.0
+]
+
 { #category : #testing }
 RTCPoint >> isRTCPoint [
 
