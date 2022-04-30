@@ -62,19 +62,6 @@ RTCVectorTest >> testIsRTCVector [
 ]
 
 { #category : #tests }
-RTCVectorTest >> testNegated [
-
-	|t r e|
-	
-	t := RTCVector withX: 1 withY: -2  withZ: 3.
-	r := t negated.
-	
-	e := RTCVector withX: -1 withY: 2  withZ: -3 withW: 0.0. 
-	
-	self assert: r = e equals: true
-]
-
-{ #category : #tests }
 RTCVectorTest >> testSubtractionWithPoint [
 
 	|p v|

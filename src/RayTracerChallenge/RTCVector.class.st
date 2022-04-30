@@ -40,13 +40,3 @@ RTCVector >> isRTCVector [
 
 	^ true
 ]
-
-{ #category : #arithmetic }
-RTCVector >> negated [ 
-	
-	^ self x: self x negated; 
-	       y: self y negated; 
-	       z: self z negated;
-			  w: self w negated; 
-			  yourself
-]

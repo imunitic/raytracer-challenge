@@ -107,6 +107,16 @@ RTCTuple >> isRTCVector [
 	^ false
 ]
 
+{ #category : #arithmetic }
+RTCTuple >> negated [ 
+	
+	^ self x: self x negated; 
+	       y: self y negated; 
+	       z: self z negated;
+			  w: self w negated; 
+			  yourself
+]
+
 { #category : #accessing }
 RTCTuple >> w [
 

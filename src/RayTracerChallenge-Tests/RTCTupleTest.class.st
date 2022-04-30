@@ -61,6 +61,19 @@ RTCTupleTest >> testMultiplication [
 ]
 
 { #category : #tests }
+RTCTupleTest >> testNegated [
+
+	|t r e|
+	
+	t := RTCTuple withX: 1 withY: -2  withZ: 3 withW: -4.0.
+	r := t negated.
+	
+	e := RTCTuple withX: -1 withY: 2  withZ: -3 withW: 4.0. 
+	
+	self assert: r = e equals: true
+]
+
+{ #category : #tests }
 RTCTupleTest >> testWithXYZW [
    | t |
 	t := RTCTuple withX: 5 withY: 4  withZ: 3 withW: 1.
