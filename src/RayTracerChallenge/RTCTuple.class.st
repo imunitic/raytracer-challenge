@@ -59,10 +59,10 @@ RTCTuple >> / aNumber [
 { #category : #comparing }
 RTCTuple >> = aTuple [
 	^ aTuple class == self class 
-	  and: [ aTuple x = self x 
-		    and: [ aTuple y = self y
-			      and: [ aTuple z = self z 
-				        and: aTuple w = self w ]]]
+	  and: [ (aTuple x closeTo: self x) 
+		    and: [ (aTuple y closeTo: self y)
+			      and: [ (aTuple z closeTo: self z)
+				        and: (aTuple w closeTo: self w) ]]]
 ]
 
 { #category : #converting }

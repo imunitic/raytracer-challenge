@@ -63,6 +63,32 @@ RTCVectorTest >> testIsRTCVector [
 ]
 
 { #category : #tests }
+RTCVectorTest >> testMagnitude [
+
+	| v r |
+	
+	v := RTCVector withX: 1.0 withY: 0.0  withZ: 0.0.
+	r := v magnitude.
+	self assert: (r closeTo: 1.0) equals: true.
+	
+	v := RTCVector withX: 0.0 withY: 1.0  withZ: 0.0.
+	r := v magnitude.
+	self assert: (r closeTo: 1.0) equals: true.
+	
+	v := RTCVector withX: 0.0 withY: 0.0  withZ: 1.0.
+	r := v magnitude.
+	self assert: (r closeTo: 1.0) equals: true.
+	
+	v := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	r := v magnitude.
+	self assert: (r closeTo: (14.0 sqrt)) equals: true.
+	
+	v := RTCVector withX: -1.0 withY: -2.0  withZ: -3.0.
+	r := v magnitude.
+	self assert: (r closeTo: (14.0 sqrt)) equals: true.
+]
+
+{ #category : #tests }
 RTCVectorTest >> testSubtractionWithPoint [
 
 	|p v|

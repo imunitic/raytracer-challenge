@@ -46,3 +46,12 @@ RTCVector >> isRTCVector [
 
 	^ true
 ]
+
+{ #category : #arithmetic }
+RTCVector >> magnitude [
+
+	^ ((self x raisedTo: 2) +
+	  (self y raisedTo: 2) +
+	  (self z raisedTo: 2) +
+	  (self w raisedTo: 2)) sqrt 
+]
