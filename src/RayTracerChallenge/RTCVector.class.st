@@ -35,6 +35,22 @@ RTCVector >> - aTuple [
 		ifFalse: [ ^ super - aTuple ]
 ]
 
+{ #category : #arithmetic }
+RTCVector >> dot: aVector [
+	| be |
+	be := [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ].
+	
+	[aVector isRTCVector
+		ifTrue: [ 	
+					^ (self x * aVector x) +
+	  				  (self y * aVector y) +
+	  				  (self z * aVector z) ]
+		ifFalse: be]
+	on: MessageNotUnderstood 
+	do: be
+
+]
+
 { #category : #initialization }
 RTCVector >> initialize [ 
 	super initialize.
@@ -54,4 +70,16 @@ RTCVector >> magnitude [
 	  (self y raisedTo: 2) +
 	  (self z raisedTo: 2) +
 	  (self w raisedTo: 2)) sqrt 
+]
+
+{ #category : #arithmetic }
+RTCVector >> normalize [
+
+	| mag |
+	mag := self magnitude.
+	 
+	^ self class withX: self x / mag   
+					 withY: self y / mag  
+					 withZ: self z / mag 
+					 withW: self w / mag
 ]

@@ -33,6 +33,24 @@ RTCVectorTest >> testAdditionWithPoint [
 ]
 
 { #category : #tests }
+RTCVectorTest >> testDot [ 
+
+	|v0 v1 r|
+	v0 := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	v1 := RTCVector withX: 2.0 withY: 3.0  withZ: 4.0.
+	
+	r := v0 dot: v1.
+	
+	self assert: (r closeTo: 20.0) equals: true.
+	
+	self should: [ v0 dot: RTCPoint new ]
+	     raise: RTCIsNotRTCVector.
+	
+	self should: [ v0 dot: 2.0 ]
+	     raise: RTCIsNotRTCVector 
+]
+
+{ #category : #tests }
 RTCVectorTest >> testInitialize [ 
 
 	|v|
@@ -86,6 +104,36 @@ RTCVectorTest >> testMagnitude [
 	v := RTCVector withX: -1.0 withY: -2.0  withZ: -3.0.
 	r := v magnitude.
 	self assert: (r closeTo: (14.0 sqrt)) equals: true.
+]
+
+{ #category : #tests }
+RTCVectorTest >> testMagnitudeOfNormalizedVector [ 
+
+	|v r|
+	
+	v := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	r := v normalize.
+	
+	self assert: ((r magnitude) closeTo: 1.0) equals: true  
+
+]
+
+{ #category : #tests }
+RTCVectorTest >> testNormalize [ 
+
+	|v e r|
+	v := RTCVector withX: 4.0 withY: 0.0  withZ: 0.0. 
+	e := RTCVector withX: 1.0 withY: 0.0  withZ: 0.0.
+	r := v normalize.
+	 
+	self assert: r = e equals: true.
+	
+	v := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	e := RTCVector withX: 1.0 / (14.0 sqrt)  withY: 2.0 / (14.0 sqrt)  withZ: 3.0/ (14.0 sqrt).
+	r := v normalize.
+	
+	self assert: r = e equals: true  
+
 ]
 
 { #category : #tests }
