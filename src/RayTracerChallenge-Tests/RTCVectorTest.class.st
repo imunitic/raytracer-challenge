@@ -33,6 +33,28 @@ RTCVectorTest >> testAdditionWithPoint [
 ]
 
 { #category : #tests }
+RTCVectorTest >> testCross [
+
+	|v0 v1 r e|
+	v0 := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	v1 := RTCVector withX: 2.0 withY: 3.0  withZ: 4.0.
+	
+	r := v0 cross: v1.
+	e := RTCVector withX: -1.0 withY: 2.0  withZ: -1.0.
+	self assert: r = e equals: true.
+	
+	r := v1 cross: v0.
+	e := RTCVector withX: 1.0 withY: -2.0  withZ: 1.0.
+	self assert: r = e equals: true.
+	
+	self should: [ v0 cross: RTCPoint new ]
+	     raise: RTCIsNotRTCVector.
+	
+	self should: [ v0 cross: 2.0 ]
+	     raise: RTCIsNotRTCVector 
+]
+
+{ #category : #tests }
 RTCVectorTest >> testDot [ 
 
 	|v0 v1 r|
