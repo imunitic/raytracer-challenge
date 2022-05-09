@@ -8,6 +8,28 @@ Class {
 	#category : #'RayTracerChallenge-Examples'
 }
 
+{ #category : #'example methods' }
+RTCEnvironment class >> runExample [
+	|p e n|
+
+	n := 0.
+	p := RTCProjectile new position: (RTCPoint withX: 0.0 withY: 1.0  withZ: 0.0); 
+	                       velocity: ((RTCVector withX: 1.0 withY: 1.0  withZ: 0.0) normalize).
+						
+	e := RTCEnvironment new gravity: (RTCVector withX: 0.0 withY: -0.1  withZ: 0.0);
+ 		                     wind: (RTCVector withX: -0.01 withY: 0.0  withZ: 0.0).
+
+
+	[  p position y > 0.0 ] whileTrue: [ 
+ 	   p := e tick: p.
+		n := n + 1.
+		Transcript show: 'Position of projectile x: ', (p position x printString), 
+							  ' y: ', (p position y printString), 
+							  ' z: ', (p position z printString);cr.
+		Transcript show: 'Run number: ', n printString; cr.		
+	]
+]
+
 { #category : #accessing }
 RTCEnvironment >> gravity [
 
