@@ -1,3 +1,6 @@
+"
+Represents a 3D environment with gravity and wind
+"
 Class {
 	#name : #RTCEnvironment,
 	#superclass : #Object,
@@ -13,11 +16,11 @@ RTCEnvironment class >> runExample [
 	|p e n|
 
 	n := 0.
-	p := RTCProjectile new position: (RTCPoint withX: 0.0 withY: 1.0  withZ: 0.0); 
-	                       velocity: ((RTCVector withX: 1.0 withY: 1.0  withZ: 0.0) normalize).
+	p := RTCProjectile new position: (RTCPoint x: 0.0 y: 1.0  z: 0.0); 
+	                       velocity: ((RTCVector x: 1.0 y: 1.0  z: 0.0) normalize).
 						
-	e := self new gravity: (RTCVector withX: 0.0 withY: -0.1  withZ: 0.0);
- 		                     wind: (RTCVector withX: -0.01 withY: 0.0  withZ: 0.0).
+	e := self new gravity: (RTCVector x: 0.0 y: -0.1  z: 0.0);
+ 		                     wind: (RTCVector x: -0.01 y: 0.0  z: 0.0).
 
 
 	[  p position y > 0.0 ] whileTrue: [ 

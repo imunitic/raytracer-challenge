@@ -7,9 +7,9 @@ Class {
 	#category : #RayTracerChallenge
 }
 
-{ #category : #initialization }
-RTCPoint class >> withX: x withY: y withZ: z [
-	^ self withX: x withY: y withZ: z withW: 1.0
+{ #category : #'instance creation' }
+RTCPoint class >> x: x y: y z: z [
+	^ self x: x y: y z: z w: 1.0
 ]
 
 { #category : #arithmetic }

@@ -8,7 +8,7 @@ Class {
 RTCPointTest >> testAdditionOfTwoPoints [
 
 	|p1 p2|
-	p1 := RTCPoint withX: 3 withY: -2 withZ: 5.
+	p1 := RTCPoint x: 3 y: -2 z: 5.
 	p2 := RTCPoint new. 
 
 	self should: [ p1 + p2 ]
@@ -19,11 +19,11 @@ RTCPointTest >> testAdditionOfTwoPoints [
 RTCPointTest >> testAdditionWithVector [
 
 	|p v r e|
-	p := RTCPoint withX: 3 withY: -2 withZ: 5.
-	v := RTCVector withX: -2 withY: 3  withZ: 1. 
+	p := RTCPoint x: 3 y: -2 z: 5.
+	v := RTCVector x: -2 y: 3  z: 1. 
 
 	r := p + v.
-	e := RTCPoint withX: 1 withY: 1  withZ: 6.
+	e := RTCPoint x: 1 y: 1  z: 6.
 	
 	self assert: r isRTCPoint equals: true;
 		  assert: r = e equals: true.
@@ -64,11 +64,11 @@ RTCPointTest >> testIsRTCVector [
 RTCPointTest >> testSubtractionWithPoint [
 
 	|p1 p2 r e|
-	p1 := RTCPoint withX: 3 withY: 2 withZ: 1.
-	p2 := RTCPoint withX: 5 withY: 6  withZ: 7. 
+	p1 := RTCPoint x: 3 y: 2 z: 1.
+	p2 := RTCPoint x: 5 y: 6  z: 7. 
 
 	r := p1 - p2.
-	e := RTCVector withX: -2 withY: -4  withZ: -6.
+	e := RTCVector x: -2 y: -4  z: -6.
 	
 	self assert: r isRTCVector equals: true;
 		  assert: r = e equals: true.
@@ -79,11 +79,11 @@ RTCPointTest >> testSubtractionWithPoint [
 RTCPointTest >> testSubtractionWithVector [
 
 	|p v r e|
-	p := RTCPoint withX: 3 withY: 2 withZ: 1.
-	v := RTCVector withX: 5 withY: 6  withZ: 7. 
+	p := RTCPoint x: 3 y: 2 z: 1.
+	v := RTCVector x: 5 y: 6  z: 7. 
 
 	r := p - v.
-	e := RTCPoint withX: -2 withY: -4  withZ: -6.
+	e := RTCPoint x: -2 y: -4  z: -6.
 	
 	self assert: r isRTCPoint equals: true;
 		  assert: r = e equals: true.

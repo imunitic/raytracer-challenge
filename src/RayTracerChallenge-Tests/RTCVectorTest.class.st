@@ -8,11 +8,11 @@ Class {
 RTCVectorTest >> testAdditionOfTwoVectors [
 
 	|v1 v2 r e|
-	v1 := RTCVector withX: 3 withY: -2 withZ: 5.
-	v2 := RTCVector withX: -2 withY: 3 withZ: 1. 
+	v1 := RTCVector x: 3 y: -2 z: 5.
+	v2 := RTCVector x: -2 y: 3 z: 1. 
 
 	r := v1 + v2.
-	e := RTCVector withX: 1 withY: 1 withZ: 6.
+	e := RTCVector x: 1 y: 1 z: 6.
 	
 	self assert: e isRTCVector equals: true;
 		  assert: r = e equals: true. 
@@ -22,11 +22,11 @@ RTCVectorTest >> testAdditionOfTwoVectors [
 RTCVectorTest >> testAdditionWithPoint [
 
 	|p v r e|
-	p := RTCPoint withX: 3 withY: -2 withZ: 5.
-	v := RTCVector withX: -2 withY: 3  withZ: 1. 
+	p := RTCPoint x: 3 y: -2 z: 5.
+	v := RTCVector x: -2 y: 3  z: 1. 
 
 	r := v + p.
-	e := RTCPoint withX: 1 withY: 1  withZ: 6.
+	e := RTCPoint x: 1 y: 1  z: 6.
 	
 	self assert: r isRTCPoint equals: true;
 		  assert: r = e equals: true.
@@ -36,15 +36,15 @@ RTCVectorTest >> testAdditionWithPoint [
 RTCVectorTest >> testCross [
 
 	|v0 v1 r e|
-	v0 := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
-	v1 := RTCVector withX: 2.0 withY: 3.0  withZ: 4.0.
+	v0 := RTCVector x: 1.0 y: 2.0  z: 3.0.
+	v1 := RTCVector x: 2.0 y: 3.0  z: 4.0.
 	
 	r := v0 cross: v1.
-	e := RTCVector withX: -1.0 withY: 2.0  withZ: -1.0.
+	e := RTCVector x: -1.0 y: 2.0  z: -1.0.
 	self assert: r = e equals: true.
 	
 	r := v1 cross: v0.
-	e := RTCVector withX: 1.0 withY: -2.0  withZ: 1.0.
+	e := RTCVector x: 1.0 y: -2.0  z: 1.0.
 	self assert: r = e equals: true.
 	
 	self should: [ v0 cross: RTCPoint new ]
@@ -58,8 +58,8 @@ RTCVectorTest >> testCross [
 RTCVectorTest >> testDot [ 
 
 	|v0 v1 r|
-	v0 := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
-	v1 := RTCVector withX: 2.0 withY: 3.0  withZ: 4.0.
+	v0 := RTCVector x: 1.0 y: 2.0  z: 3.0.
+	v1 := RTCVector x: 2.0 y: 3.0  z: 4.0.
 	
 	r := v0 dot: v1.
 	
@@ -107,23 +107,23 @@ RTCVectorTest >> testMagnitude [
 
 	| v r |
 	
-	v := RTCVector withX: 1.0 withY: 0.0  withZ: 0.0.
+	v := RTCVector x: 1.0 y: 0.0  z: 0.0.
 	r := v magnitude.
 	self assert: (r closeTo: 1.0) equals: true.
 	
-	v := RTCVector withX: 0.0 withY: 1.0  withZ: 0.0.
+	v := RTCVector x: 0.0 y: 1.0  z: 0.0.
 	r := v magnitude.
 	self assert: (r closeTo: 1.0) equals: true.
 	
-	v := RTCVector withX: 0.0 withY: 0.0  withZ: 1.0.
+	v := RTCVector x: 0.0 y: 0.0  z: 1.0.
 	r := v magnitude.
 	self assert: (r closeTo: 1.0) equals: true.
 	
-	v := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	v := RTCVector x: 1.0 y: 2.0  z: 3.0.
 	r := v magnitude.
 	self assert: (r closeTo: (14.0 sqrt)) equals: true.
 	
-	v := RTCVector withX: -1.0 withY: -2.0  withZ: -3.0.
+	v := RTCVector x: -1.0 y: -2.0  z: -3.0.
 	r := v magnitude.
 	self assert: (r closeTo: (14.0 sqrt)) equals: true.
 ]
@@ -133,7 +133,7 @@ RTCVectorTest >> testMagnitudeOfNormalizedVector [
 
 	|v r|
 	
-	v := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
+	v := RTCVector x: 1.0 y: 2.0  z: 3.0.
 	r := v normalize.
 	
 	self assert: ((r magnitude) closeTo: 1.0) equals: true  
@@ -144,14 +144,14 @@ RTCVectorTest >> testMagnitudeOfNormalizedVector [
 RTCVectorTest >> testNormalize [ 
 
 	|v e r|
-	v := RTCVector withX: 4.0 withY: 0.0  withZ: 0.0. 
-	e := RTCVector withX: 1.0 withY: 0.0  withZ: 0.0.
+	v := RTCVector x: 4.0 y: 0.0  z: 0.0. 
+	e := RTCVector x: 1.0 y: 0.0  z: 0.0.
 	r := v normalize.
 	 
 	self assert: r = e equals: true.
 	
-	v := RTCVector withX: 1.0 withY: 2.0  withZ: 3.0.
-	e := RTCVector withX: 1.0 / (14.0 sqrt)  withY: 2.0 / (14.0 sqrt)  withZ: 3.0/ (14.0 sqrt).
+	v := RTCVector x: 1.0 y: 2.0  z: 3.0.
+	e := RTCVector x: 1.0 / (14.0 sqrt)  y: 2.0 / (14.0 sqrt)  z: 3.0/ (14.0 sqrt).
 	r := v normalize.
 	
 	self assert: r = e equals: true  
@@ -162,8 +162,8 @@ RTCVectorTest >> testNormalize [
 RTCVectorTest >> testSubtractionWithPoint [
 
 	|p v|
-	v := RTCVector withX: 3 withY: -2 withZ: 5.
-	p := RTCPoint withX: -2 withY: 3  withZ: 1. 
+	v := RTCVector x: 3 y: -2 z: 5.
+	p := RTCPoint x: -2 y: 3  z: 1. 
 
 	self should: [ v - p ]
 	     raise: RTCSubtractingWithPointNotAllowed
@@ -173,11 +173,11 @@ RTCVectorTest >> testSubtractionWithPoint [
 RTCVectorTest >> testSubtractionWithVector [
 
 	|v1 v2 r e|
-	v1 := RTCVector withX: 3 withY: 2 withZ: 1.
-	v2 := RTCVector withX: 5 withY: 6  withZ: 7. 
+	v1 := RTCVector x: 3 y: 2 z: 1.
+	v2 := RTCVector x: 5 y: 6  z: 7. 
 
 	r := v1 - v2.
-	e := RTCVector withX: -2 withY: -4  withZ: -6. 
+	e := RTCVector x: -2 y: -4  z: -6. 
 	
 	self assert: r = e equals: true
 ]
@@ -187,7 +187,7 @@ RTCVectorTest >> testZero [
 
 	|v e|
 	v := RTCVector zero.
-	e := RTCVector withX: 0.0 withY: 0.0  withZ: 0.0.
+	e := RTCVector x: 0.0 y: 0.0  z: 0.0.
 	
 	self assert: v = e equals: true
 

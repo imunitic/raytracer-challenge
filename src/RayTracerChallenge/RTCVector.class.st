@@ -7,15 +7,15 @@ Class {
 	#category : #RayTracerChallenge
 }
 
-{ #category : #initialization }
-RTCVector class >> withX: x withY: y withZ: z [
-	^ self withX: x withY: y withZ: z withW: 0.0
+{ #category : #'instance creation' }
+RTCVector class >> x: x y: y z: z [
+	^ self x: x y: y z: z w: 0.0
 ]
 
 { #category : #'instance creation' }
 RTCVector class >> zero [
 
-	^ self withX: 0.0 withY: 0.0 withZ: 0.0 
+	^ self x: 0.0 y: 0.0 z: 0.0 
 	
 ]
 
@@ -42,9 +42,9 @@ RTCVector >> cross: aVector [
 	
 	[aVector isRTCVector
 		ifTrue: [ 	
-					^ self class withX: (self y * aVector z) - (self z * aVector y)  
-				                withY: (self z * aVector x) - (self x * aVector z) 
-					             withZ: (self x * aVector y) - (self y * aVector x) 
+					^ self class x: (self y * aVector z) - (self z * aVector y)  
+				                y: (self z * aVector x) - (self x * aVector z) 
+					             z: (self x * aVector y) - (self y * aVector x) 
 					]
 		ifFalse: be]
 	on: MessageNotUnderstood 
@@ -96,8 +96,8 @@ RTCVector >> normalize [
 	| mag |
 	mag := self magnitude.
 	 
-	^ self class withX: self x / mag   
-					 withY: self y / mag  
-					 withZ: self z / mag 
-					 withW: self w / mag
+	^ self class x: self x / mag   
+					 y: self y / mag  
+					 z: self z / mag 
+					 w: self w / mag
 ]

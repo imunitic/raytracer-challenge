@@ -1,3 +1,6 @@
+"
+Represents a point projectile with velocity and position
+"
 Class {
 	#name : #RTCProjectile,
 	#superclass : #Object,

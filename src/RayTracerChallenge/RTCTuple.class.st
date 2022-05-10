@@ -13,8 +13,8 @@ Class {
 	#category : #RayTracerChallenge
 }
 
-{ #category : #initialization }
-RTCTuple class >> withX: x withY: y withZ: z withW: w [
+{ #category : #'instance creation' }
+RTCTuple class >> x: x y: y z: z w: w [
 	^ self new x: x; y: y; z: z; w: w.
 
 ]
@@ -23,29 +23,29 @@ RTCTuple class >> withX: x withY: y withZ: z withW: w [
 RTCTuple >> * aNumber [
 
 	^ aNumber isNumber 
-		ifTrue: [ self class withX: (self x * aNumber) 
-										 withY: (self y * aNumber) 
-										 withZ: (self z * aNumber) 
-										 withW: (self w * aNumber)]
+		ifTrue: [ self class x: (self x * aNumber) 
+										 y: (self y * aNumber) 
+										 z: (self z * aNumber) 
+										 w: (self w * aNumber)]
 		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #arithmetic }
 RTCTuple >> + aTuple [
 
-	^ self class withX: (self x + aTuple x) 
-					 withY: (self y + aTuple y)  
-					 withZ: (self z + aTuple z)
-					 withW: (self w + aTuple w)
+	^ self class x: (self x + aTuple x) 
+					 y: (self y + aTuple y)  
+					 z: (self z + aTuple z)
+					 w: (self w + aTuple w)
 ]
 
 { #category : #arithmetic }
 RTCTuple >> - aTuple [
 
-	^ self class withX: (self x - aTuple x) 
-					 withY: (self y - aTuple y)  
-					 withZ: (self z - aTuple z)
-					 withW: (self w - aTuple w)
+	^ self class x: (self x - aTuple x) 
+					 y: (self y - aTuple y)  
+					 z: (self z - aTuple z)
+					 w: (self w - aTuple w)
 ]
 
 { #category : #arithmetic }
@@ -68,19 +68,19 @@ RTCTuple >> = aTuple [
 { #category : #converting }
 RTCTuple >> asRTCPoint [
 	
-	^ RTCPoint withX: self x 
-					 withY: self y  
-					 withZ: self z
-					 withW: self w
+	^ RTCPoint x: self x 
+					 y: self y  
+					 z: self z
+					 w: self w
 ]
 
 { #category : #converting }
 RTCTuple >> asRTCVector [
 	
-	^ RTCVector withX: self x 
-					  withY: self y  
-					  withZ: self z
-					  withW: self w
+	^ RTCVector x: self x 
+					  y: self y  
+					  z: self z
+					  w: self w
 ]
 
 { #category : #comparing }
