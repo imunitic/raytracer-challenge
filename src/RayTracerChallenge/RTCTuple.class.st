@@ -71,6 +71,14 @@ RTCTuple >> = aTuple [
 ]
 
 { #category : #converting }
+RTCTuple >> asRTCColor [
+	
+	^ RTCColor red: self x 
+				  green: self y  
+				  blue: self z
+]
+
+{ #category : #converting }
 RTCTuple >> asRTCPoint [
 	
 	^ RTCPoint x: self x 
