@@ -31,7 +31,7 @@ RTCVector >> + aTuple [
 RTCVector >> - aTuple [
 
 	^ aTuple isRTCPoint 
-		ifTrue: [ RTCSubtractingWithPointNotAllowed new signal: 'Substracting points from vector is not allowed' ]
+		ifTrue: [ self error: 'Subtracting points from vector is not allowed' ]
 		ifFalse: [ ^ super - aTuple ]
 ]
 
