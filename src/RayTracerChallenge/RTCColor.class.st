@@ -59,7 +59,7 @@ RTCColor >> hadamardProduct: aColor [
 		^ self class red:   (self red * aColor red) 
 		             green: (self green * aColor green) 
 		             blue:  (self blue * aColor blue)]
-	ifFalse: [ RTCIsNotRTCColor new signal: 'aColor is not a color' ]
+	ifFalse: [ self error: 'aColor is not a color' ]
 ]
 
 { #category : #initialization }

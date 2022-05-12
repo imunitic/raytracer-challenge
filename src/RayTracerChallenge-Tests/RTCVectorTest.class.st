@@ -48,10 +48,10 @@ RTCVectorTest >> testCross [
 	self assert: r = e equals: true.
 	
 	self should: [ v0 cross: RTCPoint new ]
-	     raise: RTCIsNotRTCVector.
+	     raise: Exception.
 	
 	self should: [ v0 cross: 2.0 ]
-	     raise: RTCIsNotRTCVector 
+	     raise: Exception 
 ]
 
 { #category : #tests }
@@ -66,10 +66,10 @@ RTCVectorTest >> testDot [
 	self assert: (r closeTo: 20.0) equals: true.
 	
 	self should: [ v0 dot: RTCPoint new ]
-	     raise: RTCIsNotRTCVector.
+	     raise: Exception.
 	
 	self should: [ v0 dot: 2.0 ]
-	     raise: RTCIsNotRTCVector 
+	     raise: Exception 
 ]
 
 { #category : #tests }
@@ -166,7 +166,7 @@ RTCVectorTest >> testSubtractionWithPoint [
 	p := RTCPoint x: -2 y: 3  z: 1. 
 
 	self should: [ v - p ]
-	     raise: RTCSubtractingWithPointNotAllowed
+	     raise: Exception
 ]
 
 { #category : #tests }

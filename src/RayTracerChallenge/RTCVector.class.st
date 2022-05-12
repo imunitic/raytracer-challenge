@@ -44,7 +44,7 @@ RTCVector >> cross: aVector [
 				                y: (self z * aVector x) - (self x * aVector z) 
 					             z: (self x * aVector y) - (self y * aVector x) 
 					]
-		ifFalse: [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ]
+		ifFalse: [ self error: 'aVector is not a vector' ]
 ]
 
 { #category : #arithmetic }
@@ -56,7 +56,7 @@ RTCVector >> dot: aVector [
 	  				  (self y * aVector y) +
 	  				  (self z * aVector z) +
 					  (self w * aVector w)]
-		ifFalse: [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ]
+		ifFalse: [ self error: 'aVector is not a vector' ]
 ]
 
 { #category : #initialization }

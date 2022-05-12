@@ -32,7 +32,7 @@ RTCTuple >> * aNumber [
 										 y: (self y * aNumber) 
 										 z: (self z * aNumber) 
 										 w: (self w * aNumber)]
-		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
+		ifFalse: [ self error: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #arithmetic }
@@ -58,7 +58,7 @@ RTCTuple >> / aNumber [
 
 	^ aNumber isNumber 
 		ifTrue: [ self * (1.0/aNumber) ]
-		ifFalse: [ RTCMultiplicationWithNonScalar signal: 'Multiplication with non scalar value' ]
+		ifFalse: [ self error: 'Multiplication with non scalar value' ]
 ]
 
 { #category : #comparing }
