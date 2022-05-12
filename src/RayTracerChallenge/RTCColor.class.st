@@ -67,8 +67,7 @@ RTCColor >> initialize [
 	super initialize.
 	self red: 0.0;
 	     green: 0.0;
-	     blue: 0.0;
-	     w: 0.0
+	     blue: 0.0
 ]
 
 { #category : #accessing }
