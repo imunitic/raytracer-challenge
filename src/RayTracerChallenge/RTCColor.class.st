@@ -7,6 +7,11 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #constants }
+RTCColor class >> black [
+	^ self red: 0.0 green: 0.0 blue: 0.0
+]
+
 { #category : #'instance creation' }
 RTCColor class >> red: red green: green blue: blue [
 	^ self new red: red;
@@ -14,6 +19,11 @@ RTCColor class >> red: red green: green blue: blue [
 	           blue: blue;
 	           yourself.
 	
+]
+
+{ #category : #constants }
+RTCColor class >> white [
+	^ self red: 1.0 green: 1.0 blue: 1.0
 ]
 
 { #category : #'instance creation' }
