@@ -37,36 +37,26 @@ RTCVector >> - aTuple [
 
 { #category : #arithmetic }
 RTCVector >> cross: aVector [
-	| be |
-	be := [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ].
 	
-	[aVector isRTCVector
+	aVector isRTCVector
 		ifTrue: [ 	
 					^ self class x: (self y * aVector z) - (self z * aVector y)  
 				                y: (self z * aVector x) - (self x * aVector z) 
 					             z: (self x * aVector y) - (self y * aVector x) 
 					]
-		ifFalse: be]
-	on: MessageNotUnderstood 
-	do: be
-
+		ifFalse: [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ]
 ]
 
 { #category : #arithmetic }
 RTCVector >> dot: aVector [
-	| be |
-	be := [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ].
-	
-	[aVector isRTCVector
+
+	aVector isRTCVector
 		ifTrue: [ 	
 					^ (self x * aVector x) +
 	  				  (self y * aVector y) +
 	  				  (self z * aVector z) +
 					  (self w * aVector w)]
-		ifFalse: be]
-	on: MessageNotUnderstood 
-	do: be
-
+		ifFalse: [ RTCIsNotRTCVector new signal: 'aVector is not a vector' ]
 ]
 
 { #category : #initialization }
