@@ -5,6 +5,15 @@ Class {
 }
 
 { #category : #tests }
+RTCCanvasTest >> testAtAt [ 
+	| c |
+	c := RTCCanvas width: 5 height: 7.
+	c at: 2 at: 3 color: RTCColor white.
+	
+	self assert: (c at: 2 at: 3) equals: RTCColor white 
+]
+
+{ #category : #tests }
 RTCCanvasTest >> testAtAtColor [
 
 	| c red |
