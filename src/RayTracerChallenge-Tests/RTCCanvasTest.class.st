@@ -26,6 +26,19 @@ RTCCanvasTest >> testAtAtColor [
 ]
 
 { #category : #tests }
+RTCCanvasTest >> testToPPM [
+	| c e r |
+	c := RTCCanvas width: 5 height: 3.
+	e := String streamContents: [ :stream | 
+		stream
+			nextPutAll: 'P3'; cr;
+			nextPutAll: '5 3'; cr;
+			nextPutAll: '255'; cr].
+	r := c toPPM.
+	self assert: (r beginsWith: e) equals: true
+]
+
+{ #category : #tests }
 RTCCanvasTest >> testWidthHeight [
 
 	| c |

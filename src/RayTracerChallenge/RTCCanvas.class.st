@@ -67,6 +67,30 @@ RTCCanvas >> indexForRow: aRow andColumn: aColumn [
 	^ (aRow-1) * width + aColumn
 ]
 
+{ #category : #format }
+RTCCanvas >> toPPM [
+	^ String streamContents: [ :stream | 
+		stream
+			nextPutAll: 'P3'; cr;
+			nextPutAll: self width printString;
+			nextPutAll: ' ';
+			nextPutAll: self height printString; cr;
+			nextPutAll: '255'; cr.
+			
+			1 to: self height do: [ :row |
+  				1 to: self width do: [ : column | 
+					stream 
+	 					nextPutAll: (self at: row at: column) toPPM.
+						column < self width 
+							ifTrue: [ stream nextPutAll: ' ' ]
+ 				].
+
+ 				stream nextPutAll: ''; cr
+			].
+		].
+		
+]
+
 { #category : #accessing }
 RTCCanvas >> width [
 

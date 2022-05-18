@@ -14,3 +14,8 @@ Object >> isRTCPoint [
 Object >> isRTCVector [ 
 	^ false
 ]
+
+{ #category : #'*RayTracerChallenge' }
+Object >> toPPM [
+	^ ''
+]
