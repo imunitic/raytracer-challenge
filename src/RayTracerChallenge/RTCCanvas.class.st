@@ -23,32 +23,7 @@ RTCCanvas class >> width: aWidth height: aHeight [
 { #category : #format }
 RTCCanvas >> asPPMString [
 	
-	^ String streamContents: [ :stream | 
-		stream nextPutAll: self ppmHeader.
-			
-		1 to: self height do: [ :row |
-			| rowStream currentRowSize currentColorPPMString |
-			rowStream := WriteStream on: String new.
-					
-  			1 to: self width do: [ :column | 
-				currentColorPPMString := (self at: row at: column) asPPMString.
-				currentRowSize := rowStream contents size.
-				
-				(currentRowSize + currentColorPPMString size) > self ppmMaxLineLength
-					ifTrue: [ 
-								 rowStream nextPutAll: String cr.
-								 stream nextPutAll: rowStream contents.
-								 rowStream := WriteStream on: String new.
-						     ].
-				rowStream nextPutAll: currentColorPPMString.
-				column < self width 
-					ifTrue: [ rowStream nextPutAll: String space ]
- 			].
-		
-			stream nextPutAll: rowStream contents.
-		 	stream nextPutAll: String cr
-		].
-	].
+	^ self ppmHeader, self ppmBody.
 		
 ]
 
@@ -100,8 +75,47 @@ RTCCanvas >> indexForRow: aRow andColumn: aColumn [
 ]
 
 { #category : #format }
+RTCCanvas >> ppmBody [
+	|body lines|
+   body := String streamContents: [ :stream |
+		1 to: self height do: [ :row |
+ 			1 to: self width do: [ :column | 
+				stream nextPutAll: (self at: row at: column) asPPMString.
+				column < self width ifTrue: [ stream nextPutAll: String space ]
+			].
+			stream nextPutAll: String cr
+		]
+	].
+	lines := Character cr split: body.
+	
+	^ String cr join: (lines collect: [ :line | 
+			self ppmLine: line ])
+	
+]
+
+{ #category : #format }
 RTCCanvas >> ppmHeader [
 	^ 'P3<r>{1} {2}<r>255<r>' expandMacros format: { self width. self height }.
+]
+
+{ #category : #format }
+RTCCanvas >> ppmLine: aLine [
+	|chars|
+	chars := '0123456789'.
+	^ aLine size > self ppmMaxLineLength 
+		ifTrue: [ 
+			| i c |
+			i := self ppmMaxLineLength.
+			c := aLine at: i.
+					
+			[ chars anySatisfy: [ :ch | ch = c ] ] 
+				whileTrue: [ 
+					i := i - 1.
+					c := aLine at: i.
+				].
+			aLine at: i put: Character cr; yourself
+		]
+		ifFalse: [ aLine ]
 ]
 
 { #category : #format }
