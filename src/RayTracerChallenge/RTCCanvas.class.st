@@ -22,8 +22,6 @@ RTCCanvas class >> width: aWidth height: aHeight [
 
 { #category : #format }
 RTCCanvas >> asPPMString [
-   | ln |
-	ln := OSPlatform current lineEnding.
 	
 	^ String streamContents: [ :stream | 
 		stream nextPutAll: self ppmHeader.
@@ -38,7 +36,7 @@ RTCCanvas >> asPPMString [
 				
 				(currentRowSize + currentColorPPMString size) > self ppmMaxLineLength
 					ifTrue: [ 
-								 rowStream nextPutAll: ln.
+								 rowStream nextPutAll: String cr.
 								 stream nextPutAll: rowStream contents.
 								 rowStream := WriteStream on: String new.
 						     ].
@@ -48,7 +46,7 @@ RTCCanvas >> asPPMString [
  			].
 		
 			stream nextPutAll: rowStream contents.
-		 	stream nextPutAll: ln
+		 	stream nextPutAll: String cr
 		].
 	].
 		
@@ -103,7 +101,7 @@ RTCCanvas >> indexForRow: aRow andColumn: aColumn [
 
 { #category : #format }
 RTCCanvas >> ppmHeader [
-	^ 'P3<n>{1} {2}<n>255<n>' expandMacros format: { self width. self height }.
+	^ 'P3<r>{1} {2}<r>255<n>' expandMacros format: { self width. self height }.
 ]
 
 { #category : #format }
