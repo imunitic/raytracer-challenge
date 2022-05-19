@@ -42,7 +42,7 @@ RTCCanvas >> asPPMString [
 						     ].
 				rowStream nextPutAll: currentColorPPMString.
 				column < self width 
-					ifTrue: [ rowStream nextPutAll: ' ' ]
+					ifTrue: [ rowStream nextPutAll: String space ]
  			].
 		
 			stream nextPutAll: rowStream contents.
