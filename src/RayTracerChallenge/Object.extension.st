@@ -1,6 +1,11 @@
 Extension { #name : #Object }
 
 { #category : #'*RayTracerChallenge' }
+Object >> asPPMString [
+	^ String empty
+]
+
+{ #category : #'*RayTracerChallenge' }
 Object >> isRTCColor [ 
 	^ false
 ]
@@ -13,9 +18,4 @@ Object >> isRTCPoint [
 { #category : #'*RayTracerChallenge' }
 Object >> isRTCVector [ 
 	^ false
-]
-
-{ #category : #'*RayTracerChallenge' }
-Object >> toPPM [
-	^ ''
 ]

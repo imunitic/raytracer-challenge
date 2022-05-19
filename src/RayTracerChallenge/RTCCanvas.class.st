@@ -20,6 +20,40 @@ RTCCanvas class >> width: aWidth height: aHeight [
 				  contents: ((Array new: aWidth * aHeight) atAllPut: (RTCColor black); yourself) 
 ]
 
+{ #category : #format }
+RTCCanvas >> asPPMString [
+   | ln |
+	ln := OSPlatform current lineEnding.
+	
+	^ String streamContents: [ :stream | 
+		stream nextPutAll: self ppmHeader.
+			
+		1 to: self height do: [ :row |
+			| rowStream currentRowSize currentColorPPMString |
+			rowStream := WriteStream on: String new.
+					
+  			1 to: self width do: [ :column | 
+				currentColorPPMString := (self at: row at: column) asPPMString.
+				currentRowSize := rowStream contents size.
+				
+				(currentRowSize + currentColorPPMString size) > self ppmMaxLineLength
+					ifTrue: [ 
+								 rowStream nextPutAll: ln.
+								 stream nextPutAll: rowStream contents.
+								 rowStream := WriteStream on: String new.
+						     ].
+				rowStream nextPutAll: currentColorPPMString.
+				column < self width 
+					ifTrue: [ rowStream nextPutAll: ' ' ]
+ 			].
+		
+			stream nextPutAll: rowStream contents.
+		 	stream nextPutAll: ln
+		].
+	].
+		
+]
+
 { #category : #accessing }
 RTCCanvas >> at: aRow at: aColumn [
 	^ self contents at: (self indexForRow: aRow andColumn: aColumn)
@@ -68,27 +102,13 @@ RTCCanvas >> indexForRow: aRow andColumn: aColumn [
 ]
 
 { #category : #format }
-RTCCanvas >> toPPM [
-	^ String streamContents: [ :stream | 
-		stream
-			nextPutAll: 'P3'; cr;
-			nextPutAll: self width printString;
-			nextPutAll: ' ';
-			nextPutAll: self height printString; cr;
-			nextPutAll: '255'; cr.
-			
-			1 to: self height do: [ :row |
-  				1 to: self width do: [ : column | 
-					stream 
-	 					nextPutAll: (self at: row at: column) toPPM.
-						column < self width 
-							ifTrue: [ stream nextPutAll: ' ' ]
- 				].
+RTCCanvas >> ppmHeader [
+	^ 'P3<n>{1} {2}<n>255<n>' expandMacros format: { self width. self height }.
+]
 
- 				stream nextPutAll: ''; cr
-			].
-		].
-		
+{ #category : #format }
+RTCCanvas >> ppmMaxLineLength [
+	^ 70
 ]
 
 { #category : #accessing }

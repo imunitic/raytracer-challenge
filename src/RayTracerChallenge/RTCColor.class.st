@@ -37,6 +37,30 @@ RTCColor >> <*> aColor [
  ^ self hadamardProduct: aColor
 ]
 
+{ #category : #format }
+RTCColor >> asPPMString [ 
+	| clip color |
+	
+	clip := [ :c |
+		color := c * 255.0.
+		
+		color > 255.0 
+			ifTrue: [ 255 ]
+			ifFalse: [ color < 0.0
+				ifTrue: [ 0 ]
+				ifFalse: [ color ceiling  ] ]
+	].
+
+   ^ String streamContents: [  :stream |
+		stream 
+			nextPutAll: (clip value: self red) printString;
+			nextPutAll: ' ';
+			nextPutAll: (clip value: self green) printString;
+			nextPutAll: ' ';
+			nextPutAll: (clip value: self blue) printString
+	 ]
+]
+
 { #category : #accessing }
 RTCColor >> blue [
 
@@ -96,28 +120,4 @@ RTCColor >> red [
 RTCColor >> red: anObject [
 
 	x := anObject
-]
-
-{ #category : #format }
-RTCColor >> toPPM [ 
-	| clip color |
-	
-	clip := [ :c |
-		color := c * 255.0.
-		
-		color > 255.0 
-			ifTrue: [ 255 ]
-			ifFalse: [ color < 0.0
-				ifTrue: [ 0 ]
-				ifFalse: [ color ceiling  ] ]
-	].
-
-   ^ String streamContents: [  :stream |
-		stream 
-			nextPutAll: (clip value: self red) printString;
-			nextPutAll: ' ';
-			nextPutAll: (clip value: self green) printString;
-			nextPutAll: ' ';
-			nextPutAll: (clip value: self blue) printString
-	 ]
 ]

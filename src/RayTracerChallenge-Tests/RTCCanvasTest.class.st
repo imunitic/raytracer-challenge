@@ -26,16 +26,13 @@ RTCCanvasTest >> testAtAtColor [
 ]
 
 { #category : #tests }
-RTCCanvasTest >> testToPPM [
-	| c e r |
+RTCCanvasTest >> testPpmHeader [
+	| c e r|
 	c := RTCCanvas width: 5 height: 3.
-	e := String streamContents: [ :stream | 
-		stream
-			nextPutAll: 'P3'; cr;
-			nextPutAll: '5 3'; cr;
-			nextPutAll: '255'; cr].
-	r := c toPPM.
-	self assert: (r beginsWith: e) equals: true
+	e := 'P3<n>{1} {2}<n>255<n>' expandMacros format: { 5. 3 }.
+	r := c ppmHeader.
+	
+	self assert: r equals: e
 ]
 
 { #category : #tests }

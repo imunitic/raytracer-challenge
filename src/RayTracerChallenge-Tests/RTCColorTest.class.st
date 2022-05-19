@@ -54,6 +54,14 @@ RTCColorTest >> testMultiplication [
 ]
 
 { #category : #tests }
+RTCColorTest >> testPpmHeader [ 
+	| c |
+	c := RTCColor red: 1.5 green: 0.7 blue: 0.6.
+	
+	self assert: c asPPMString equals: '255 179 153'
+]
+
+{ #category : #tests }
 RTCColorTest >> testSubtraction [
 	
 	| c1 c2 r e |
@@ -63,12 +71,4 @@ RTCColorTest >> testSubtraction [
 	r := c1 - c2.
 	e := RTCColor red: 0.2 green: 0.5 blue: 0.5.
 	self assert: r = e equals: true
-]
-
-{ #category : #format }
-RTCColorTest >> testToPPM [ 
-	| c |
-	c := RTCColor red: 1.5 green: 0.7 blue: 0.6.
-	
-	self assert: c toPPM equals: '255 178 153'
 ]
