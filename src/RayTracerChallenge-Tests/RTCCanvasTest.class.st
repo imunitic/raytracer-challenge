@@ -26,6 +26,26 @@ RTCCanvasTest >> testAtAtColor [
 ]
 
 { #category : #tests }
+RTCCanvasTest >> testFormatPpmLine [
+	| l e r|
+	l := '255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255'.
+	e := '255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255<r>255' expandMacros.
+	r := RTCCanvas formatPPMLine: l copy.
+	
+	self assert: r equals: e
+]
+
+{ #category : #tests }
+RTCCanvasTest >> testPpmBody [
+	| c e r|
+	c := RTCCanvas width: 10 height: 2  color: RTCColor white. 
+	e := '255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255<r>255 255 255 255 255 255 255 255 255 255 255 255 255<r>255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255<r>255 255 255 255 255 255 255 255 255 255 255 255 255<r>' expandMacros.
+	r := c ppmBody.
+	
+	self assert: r equals: e
+]
+
+{ #category : #tests }
 RTCCanvasTest >> testPpmHeader [
 	| c e r|
 	c := RTCCanvas width: 5 height: 3.
@@ -44,4 +64,15 @@ RTCCanvasTest >> testWidthHeight [
 	self assert: c width equals: 10;
 		  assert: c height equals: 20; 
 		  assert: (c contents allSatisfy: [ :each | each = RTCColor black ]) equals: true
+]
+
+{ #category : #tests }
+RTCCanvasTest >> testWidthHeightColor [
+
+	| c |
+	c := RTCCanvas width: 10 height: 20 color: RTCColor white.
+	
+	self assert: c width equals: 10;
+		  assert: c height equals: 20; 
+		  assert: (c contents allSatisfy: [ :each | each = RTCColor white ]) equals: true
 ]

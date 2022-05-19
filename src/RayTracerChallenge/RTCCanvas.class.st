@@ -12,6 +12,29 @@ Class {
 	#category : #RayTracerChallenge
 }
 
+{ #category : #format }
+RTCCanvas class >> formatPPMLine: aLine [
+
+	^ aLine size > self maxPPMLineLength 
+		ifTrue: [ 
+			| i c |
+			i := self maxPPMLineLength.
+			c := aLine at: i.
+					
+			[ c isDigit ] whileTrue: [ 
+					i := i - 1.
+					c := aLine at: i.
+			].
+			aLine at: i put: Character cr; yourself
+		]
+		ifFalse: [ aLine ]
+]
+
+{ #category : #format }
+RTCCanvas class >> maxPPMLineLength [
+	^ 70
+]
+
 { #category : #'instance creation' }
 RTCCanvas class >> width: aWidth height: aHeight [
 
@@ -97,36 +120,13 @@ RTCCanvas >> ppmBody [
 	lines := Character cr split: body.
 	
 	^ String cr join: (lines collect: [ :line | 
-			self ppmLine: line ])
+			self class formatPPMLine: line ])
 	
 ]
 
 { #category : #format }
 RTCCanvas >> ppmHeader [
 	^ 'P3<r>{1} {2}<r>255<r>' expandMacros format: { self width. self height }.
-]
-
-{ #category : #format }
-RTCCanvas >> ppmLine: aLine [
-
-	^ aLine size > self ppmMaxLineLength 
-		ifTrue: [ 
-			| i c |
-			i := self ppmMaxLineLength.
-			c := aLine at: i.
-					
-			[ c isDigit ] whileTrue: [ 
-					i := i - 1.
-					c := aLine at: i.
-			].
-			aLine at: i put: Character cr; yourself
-		]
-		ifFalse: [ aLine ]
-]
-
-{ #category : #format }
-RTCCanvas >> ppmMaxLineLength [
-	^ 70
 ]
 
 { #category : #accessing }
