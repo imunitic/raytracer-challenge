@@ -101,7 +101,7 @@ RTCCanvas >> indexForRow: aRow andColumn: aColumn [
 
 { #category : #format }
 RTCCanvas >> ppmHeader [
-	^ 'P3<r>{1} {2}<r>255<n>' expandMacros format: { self width. self height }.
+	^ 'P3<r>{1} {2}<r>255<r>' expandMacros format: { self width. self height }.
 ]
 
 { #category : #format }

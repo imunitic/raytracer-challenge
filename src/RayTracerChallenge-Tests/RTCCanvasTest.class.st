@@ -29,7 +29,7 @@ RTCCanvasTest >> testAtAtColor [
 RTCCanvasTest >> testPpmHeader [
 	| c e r|
 	c := RTCCanvas width: 5 height: 3.
-	e := 'P3<r>{1} {2}<r>255<n>' expandMacros format: { 5. 3 }.
+	e := 'P3<r>{1} {2}<r>255<r>' expandMacros format: { 5. 3 }.
 	r := c ppmHeader.
 	
 	self assert: r equals: e
