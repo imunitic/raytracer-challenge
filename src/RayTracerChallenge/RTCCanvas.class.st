@@ -15,9 +15,17 @@ Class {
 { #category : #'instance creation' }
 RTCCanvas class >> width: aWidth height: aHeight [
 
+	^ self width: aWidth 
+			  height: aHeight
+			  color: RTCColor black
+]
+
+{ #category : #'instance creation' }
+RTCCanvas class >> width: aWidth height: aHeight color: aColor [
+
 	^ self new width: aWidth; 
 				  height: aHeight;
-				  contents: ((Array new: aWidth * aHeight) atAllPut: (RTCColor black); yourself) 
+				  contents: ((Array new: aWidth * aHeight) atAllPut: aColor; yourself) 
 ]
 
 { #category : #format }
@@ -100,19 +108,17 @@ RTCCanvas >> ppmHeader [
 
 { #category : #format }
 RTCCanvas >> ppmLine: aLine [
-	|chars|
-	chars := '0123456789'.
+
 	^ aLine size > self ppmMaxLineLength 
 		ifTrue: [ 
 			| i c |
 			i := self ppmMaxLineLength.
 			c := aLine at: i.
 					
-			[ chars anySatisfy: [ :ch | ch = c ] ] 
-				whileTrue: [ 
+			[ c isDigit ] whileTrue: [ 
 					i := i - 1.
 					c := aLine at: i.
-				].
+			].
 			aLine at: i put: Character cr; yourself
 		]
 		ifFalse: [ aLine ]
