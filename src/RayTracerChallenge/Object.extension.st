@@ -1,11 +1,6 @@
 Extension { #name : #Object }
 
 { #category : #'*RayTracerChallenge' }
-Object >> asPPMString [
-	^ String empty
-]
-
-{ #category : #'*RayTracerChallenge' }
 Object >> isRTCColor [ 
 	^ false
 ]

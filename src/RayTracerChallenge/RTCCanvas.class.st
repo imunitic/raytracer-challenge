@@ -12,27 +12,14 @@ Class {
 	#category : #RayTracerChallenge
 }
 
-{ #category : #format }
-RTCCanvas class >> formatPPMLine: aLine [
-
-	^ aLine size > self maxPPMLineLength 
-		ifTrue: [ 
-			| i c |
-			i := self maxPPMLineLength.
-			c := aLine at: i.
-					
-			[ c isDigit ] whileTrue: [ 
-					i := i - 1.
-					c := aLine at: i.
-			].
-			aLine at: i put: Character cr; yourself
-		]
-		ifFalse: [ aLine ]
+{ #category : #export }
+RTCCanvas class >> exportAs: aFile using: anExporter [
+	^ nil
 ]
 
-{ #category : #format }
-RTCCanvas class >> maxPPMLineLength [
-	^ 70
+{ #category : #export }
+RTCCanvas class >> exportUsing: anExporter [
+	^ anExporter export
 ]
 
 { #category : #'instance creation' }
@@ -49,13 +36,6 @@ RTCCanvas class >> width: aWidth height: aHeight color: aColor [
 	^ self new width: aWidth; 
 				  height: aHeight;
 				  contents: ((Array new: aWidth * aHeight) atAllPut: aColor; yourself) 
-]
-
-{ #category : #format }
-RTCCanvas >> asPPMString [
-	
-	^ self ppmHeader, self ppmBody.
-		
 ]
 
 { #category : #accessing }
@@ -103,30 +83,6 @@ RTCCanvas >> indexForRow: aRow andColumn: aColumn [
 	(aColumn between: 1 and: width)
 		ifFalse: [self error: '2nd subscript out of range'].
 	^ (aRow-1) * width + aColumn
-]
-
-{ #category : #format }
-RTCCanvas >> ppmBody [
-	|body lines|
-   body := String streamContents: [ :stream |
-		1 to: self height do: [ :row |
- 			1 to: self width do: [ :column | 
-				stream nextPutAll: (self at: row at: column) asPPMString.
-				column < self width ifTrue: [ stream nextPutAll: String space ]
-			].
-			stream nextPutAll: String cr
-		]
-	].
-	lines := Character cr split: body.
-	
-	^ String cr join: (lines collect: [ :line | 
-			self class formatPPMLine: line ])
-	
-]
-
-{ #category : #format }
-RTCCanvas >> ppmHeader [
-	^ 'P3<r>{1} {2}<r>255<r>' expandMacros format: { self width. self height }.
 ]
 
 { #category : #accessing }

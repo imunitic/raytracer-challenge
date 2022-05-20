@@ -26,36 +26,6 @@ RTCCanvasTest >> testAtAtColor [
 ]
 
 { #category : #tests }
-RTCCanvasTest >> testFormatPpmLine [
-	| l e r|
-	l := '255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255'.
-	e := '255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255<r>255' expandMacros.
-	r := RTCCanvas formatPPMLine: l copy.
-	
-	self assert: r equals: e
-]
-
-{ #category : #tests }
-RTCCanvasTest >> testPpmBody [
-	| c e r|
-	c := RTCCanvas width: 10 height: 2  color: RTCColor white. 
-	e := '255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255<r>255 255 255 255 255 255 255 255 255 255 255 255 255<r>255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255<r>255 255 255 255 255 255 255 255 255 255 255 255 255<r>' expandMacros.
-	r := c ppmBody.
-	
-	self assert: r equals: e
-]
-
-{ #category : #tests }
-RTCCanvasTest >> testPpmHeader [
-	| c e r|
-	c := RTCCanvas width: 5 height: 3.
-	e := 'P3<r>{1} {2}<r>255<r>' expandMacros format: { 5. 3 }.
-	r := c ppmHeader.
-	
-	self assert: r equals: e
-]
-
-{ #category : #tests }
 RTCCanvasTest >> testWidthHeight [
 
 	| c |
