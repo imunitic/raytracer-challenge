@@ -12,16 +12,6 @@ Class {
 	#category : #RayTracerChallenge
 }
 
-{ #category : #export }
-RTCCanvas class >> exportAs: aFile using: anExporter [
-	^ nil
-]
-
-{ #category : #export }
-RTCCanvas class >> exportUsing: anExporter [
-	^ anExporter export
-]
-
 { #category : #'instance creation' }
 RTCCanvas class >> width: aWidth height: aHeight [
 
@@ -61,6 +51,18 @@ RTCCanvas >> contents [
 RTCCanvas >> contents: anObject [
 
 	contents := anObject
+]
+
+{ #category : #export }
+RTCCanvas >> exportAs: aFile using: anExporter [
+	aFile asFileReference writeStreamDo: [ :stream |
+		stream nextPutAll: (anExporter withCanvas: self) export
+	]
+]
+
+{ #category : #export }
+RTCCanvas >> exportUsing: anExporter [
+	^ (anExporter withCanvas: self) export
 ]
 
 { #category : #accessing }

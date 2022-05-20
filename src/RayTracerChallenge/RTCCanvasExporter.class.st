@@ -12,11 +12,8 @@ Class {
 
 { #category : #creating }
 RTCCanvasExporter class >> withCanvas: aCanvas [
-	| ex |
-	ex := self new.
-	ex canvas: aCanvas.
-	
-	^ ex
+
+	^ self new canvas: aCanvas
 ]
 
 { #category : #accessing }
